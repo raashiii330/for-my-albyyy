@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100711">
+<title>For Aalbyyyyyy — A Little Forever</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Manrope:wght@300;400;500;600;700&display=swap');
+:root{--night:#100711;--wine:#3c1028;--rose:#ff638b;--blush:#ffb7ca;--gold:#e7c38b;--paper:#fff0df;--ink:#512c3b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--night);color:#fff2eb;font-family:Manrope,Arial,sans-serif;min-height:100vh;overflow-x:hidden}
+button{font:inherit}
+#sky,#petals{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+#sky{z-index:0;background:radial-gradient(ellipse at 50% 30%,#5a1835 0%,#230c20 45%,#0d0711 100%)}
+#petals{z-index:10}
+.star{position:absolute;width:2px;height:2px;background:#fff0dc;border-radius:50%;opacity:.45;animation:twinkle 3s ease-in-out infinite alternate}
+@keyframes twinkle{to{opacity:1;transform:scale(1.9)}}
+.petal{position:absolute;top:-35px;font-size:18px;animation:fall linear forwards;filter:drop-shadow(0 0 8px #ff4e8a44)}
+@keyframes fall{to{transform:translate3d(var(--drift),110vh,0) rotate(540deg);opacity:.05}}
+.music{position:fixed;top:16px;right:16px;z-index:30;border:1px solid #e7c38b66;border-radius:99px;padding:10px 14px;background:#180c18d9;color:#ffeedf;font-size:10px;letter-spacing:.1em;cursor:pointer;backdrop-filter:blur(12px)}
+.music:hover{border-color:var(--gold)}
+main{position:relative;z-index:1}
+.scene{display:none;min-height:100svh;padding:82px 20px 38px;align-items:center;justify-content:center;position:relative}
+.scene.active{display:flex;animation:fadeUp .8s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.wrap{width:min(100%,780px);margin:auto;text-align:center}
+.kicker{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;line-height:.98;margin:0 0 20px}
+h1{font-size:clamp(3rem,9vw,6.4rem)}
+h2{font-size:clamp(2.3rem,7vw,4.7rem)}
+.script{font-family:"Great Vibes",cursive;font-size:clamp(2.7rem,8vw,5.5rem);color:var(--blush);font-weight:400;line-height:1.08}
+.lead{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(1.15rem,3.3vw,1.5rem);line-height:1.6;color:#f7dfe5c9;max-width:590px;margin:0 auto 28px}
+.rule{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--blush);margin:22px auto}
+.rule:before,.rule:after{content:"";width:55px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.rule:after{transform:rotate(180deg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:14px 23px;border:1px solid #ffb7ca99;border-radius:99px;background:linear-gradient(135deg,#ff527f,#b6164d);color:white;box-shadow:0 8px 32px #f72c6635,inset 0 1px #ffffff55;font-size:11px;font-weight:700;letter-spacing:.09em;cursor:pointer;transition:transform .22s,box-shadow .22s,border-color .22s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px #f72c6655}
+.btn.alt{background:#170b17d9;border-color:#e7c38b99;box-shadow:none}
+.btn.alt:hover{border-color:var(--gold)}
+.tiny{font-size:10px;letter-spacing:.14em;color:#f6dbe49c;margin-top:17px}
+.step{position:absolute;top:24px;left:22px;color:#f8dce4a6;font-size:10px;letter-spacing:.2em}
+.scene-number{color:var(--gold)}
+/* cinematic portal */
+.portal{width:min(74vw,330px);aspect-ratio:1;margin:8px auto 28px;position:relative;display:grid;place-items:center;perspective:800px}
+.portal:before,.portal:after{content:"";position:absolute;inset:4%;border:1px solid #e7c38b66;border-radius:50%;box-shadow:0 0 35px #ff527f19,inset 0 0 35px #ff527f10;animation:spin 22s linear infinite}
+.portal:after{inset:15% -3%;transform:rotateX(67deg);border-color:#ff9bb74d;animation-duration:15s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.portal-heart{font-size:clamp(120px,32vw,230px);line-height:1;color:#f02f68;text-shadow:0 0 14px #ff89a8,0 0 45px #ed285b,0 0 95px #a70d42;animation:beat 2.2s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}10%{transform:scale(1.08)}20%{transform:scale(1)}30%{transform:scale(1.04)}}
+.orb-label{position:absolute;bottom:10%;font-family:"Cormorant Garamond",serif;color:#ffe5d1;font-size:15px;letter-spacing:.16em}
+/* envelope */
+.envelope-stage{height:285px;width:min(88vw,390px);margin:10px auto 26px;position:relative;perspective:1000px;filter:drop-shadow(0 28px 35px #0008)}
+.envelope{position:absolute;inset:40px 0 0;height:215px;border-radius:6px;background:linear-gradient(140deg,#f8ddc5,#bd817b);box-shadow:inset 0 0 0 1px #fff3d980;transform-style:preserve-3d}
+.envelope:before{content:"";position:absolute;inset:0;background:linear-gradient(34deg,transparent 49.5%,#ad6a6b 50%,transparent 50.6%),linear-gradient(-34deg,transparent 49.5%,#d7a092 50%,transparent 50.6%)}
+.flap{position:absolute;top:0;left:0;width:100%;height:58%;background:linear-gradient(140deg,#ffead4,#d6a092);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;z-index:4;transition:transform .9s ease;backface-visibility:hidden}
+.seal{position:absolute;z-index:5;left:50%;top:48%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 25%,#ff9bab,#a50038 75%);border:2px solid #ef8ca2;box-shadow:0 4px 12px #52001e8c;color:#ffe1e7;font-size:25px;transition:opacity .3s}
+.env-name{position:absolute;z-index:3;top:58%;left:0;right:0;text-align:center;color:#743345;font:30px "Great Vibes",cursive;transform:rotate(-3deg)}
+.letter-slip{position:absolute;left:7%;right:7%;bottom:22px;height:160px;padding:25px 12px;background:linear-gradient(140deg,#fff2dd,#e8c9b3);color:#653143;text-align:center;font:22px "Great Vibes",cursive;z-index:-1;transition:transform .9s ease}
+.envelope.open .flap{transform:rotateX(180deg)}
+.envelope.open .seal{opacity:0}
+.envelope.open .letter-slip{transform:translateY(-120px);z-index:2}
+/* paper */
+.paper{position:relative;max-width:660px;margin:auto;padding:clamp(27px,6vw,55px);text-align:left;color:var(--ink);background:linear-gradient(135deg,#fff2e0,#f0d2bd);border:1px solid #ffedda;box-shadow:0 25px 80px #0008;transform:rotate(-.45deg)}
+.paper:before{content:"";position:absolute;inset:9px;border:1px solid #a9656a55;pointer-events:none}
+.paper .script{color:#9c2b4d;font-size:clamp(2.2rem,6vw,3.5rem);margin-bottom:12px}
+.paper p{font:clamp(1.05rem,3vw,1.34rem)/1.65 "Cormorant Garamond",Georgia,serif;margin:0 0 14px}
+.sign{text-align:right;font:2rem "Great Vibes",cursive;color:#9c2b4d;margin-top:20px}
+.promise{max-width:550px;margin:0 auto;border:1px solid #e7c38b4d;background:linear-gradient(145deg,#fff8f008,#ff9bb70a);padding:24px;border-radius:18px}
+.promise p{font:clamp(1.15rem,3vw,1.45rem)/1.6 "Cormorant Garamond",serif;color:#f6dfe6}
+/* yes/no */
+.choice-arena{position:relative;height:115px;width:min(100%,370px);margin:8px auto 0}
+.choice-arena .btn{position:absolute;top:25px;min-width:122px}
+#yes{left:calc(50% - 137px)}
+#no{left:calc(50% + 15px);background:linear-gradient(135deg,#291621,#130a13);border-color:#e7c38b99;box-shadow:none;z-index:4;touch-action:manipulation}
+.final-heart{font-size:clamp(90px,24vw,170px);filter:drop-shadow(0 0 35px #ff4c8066);animation:beat 1.8s infinite}
+.final-title{background:linear-gradient(110deg,#fff0df,#ff9bb7,#e7c38b);background-clip:text;-webkit-background-clip:text;color:transparent}
+.footer{margin-top:28px;font-size:10px;letter-spacing:.22em;color:#f2d3dd80}
+@media(max-width:480px){.scene{padding:75px 16px 30px}.music{top:10px;right:10px;padding:9px 11px}.envelope-stage{height:255px}.envelope{height:195px}.choice-arena{height:120px}.btn{padding:13px 17px}.paper{padding:29px 24px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div id="sky" aria-hidden="true"></div><div id="petals" aria-hidden="true"></div>
+<button class="music" id="musicButton" type="button">♫ &nbsp; TAP TO START MUSIC</button>
+<audio id="song" loop preload="auto">
+  <source src="./love-song.mp3" type="audio/mpeg">
+</audio>
+
+<main>
+<section class="scene active" id="s1">
+ <span class="step">OUR LITTLE UNIVERSE · 01</span>
+ <div class="wrap">
+  <div class="kicker">For one very special soul</div>
+  <h1>Somewhere between<br>the stars and my heart…</h1>
+  <div class="script">there is you.</div>
+  <div class="portal"><div class="portal-heart">♥</div><div class="orb-label">AALBYYYYYY · MY PERSON</div></div>
+  <p class="lead">I made a tiny world for you. Take a breath, turn the sound on if you like, and follow the little lights.</p>
+  <button class="btn" id="start">ENTER OUR LITTLE WORLD ♡</button>
+  <div class="tiny">MADE JUST FOR YOU · WITH ALL MY HEART</div>
+ </div>
+</section>
+
+<section class="scene" id="s2">
+ <span class="step">A LETTER THAT FOUND YOU · 02</span>
+ <div class="wrap">
+  <div class="kicker">Delivered with a little magic</div>
+  <h2>One letter.<br><span class="script">A thousand feelings.</span></h2>
+  <div class="envelope-stage">
+   <div class="letter-slip">For Aalbyyyyyy…<br><br>There is something my heart wants you to know. ♥</div>
+   <div class="envelope" id="envelope"><div class="flap"></div><div class="env-name">To my ponnaaahhh ♡</div><div class="seal">♥</div></div>
+  </div>
+  <button class="btn" id="open">BREAK THE SEAL ♡</button>
+ </div>
+</section>
+
+<section class="scene" id="s3">
+ <span class="step">A NOTE FROM ME TO YOU · 03</span>
+ <div class="wrap">
+  <article class="paper">
+   <div class="script">My sweetheart,</div>
+   <p>Sometimes I wish you could borrow my eyes for just a moment, so you could see how lovely you are to me.</p>
+   <p>You have this quiet little way of making an ordinary day feel like a memory I want to keep. A thought of you can turn a smile up on my face before I even realise it.</p>
+   <p>I don't need every moment to be perfect. I just love that, in this huge world, there is someone like you who makes my world feel a little warmer.</p>
+   <div class="sign">With all my heart, always ♡</div>
+  </article>
+  <div style="margin-top:30px"><button class="btn alt" data-go="4">FOLLOW THE LIGHTS →</button></div>
+ </div>
+</section>
+
+<section class="scene" id="s4">
+ <span class="step">IF MY HEART COULD SPEAK · 04</span>
+ <div class="wrap">
+  <div class="kicker">Out of all the people in this world…</div>
+  <h2>My heart found<br><span class="script">something rare.</span></h2>
+  <div class="portal"><div class="portal-heart">♥</div></div>
+  <div class="promise"><p>Not because everything is a fairytale, but because even the little things feel more beautiful when I get to share them with you.</p></div>
+  <div class="rule">♡</div>
+  <button class="btn" data-go="5">THERE'S ONE THING I NEED TO ASK… →</button>
+ </div>
+</section>
+
+<section class="scene" id="s5">
+ <span class="step">THE QUESTION · 05</span>
+ <div class="wrap">
+  <div class="kicker">A little question with a very big heart</div>
+  <div class="script" style="font-size:clamp(2.5rem,7vw,4.7rem)">Aalbyyyyyy,</div>
+  <h1 style="font-size:clamp(2.8rem,9vw,6rem)">Will you be<br><span class="script">my Valentine?</span></h1>
+  <div class="rule">♥</div>
+  <div class="choice-arena" id="arena">
+   <button class="btn" id="yes">YES, ALWAYS ♥</button>
+   <button class="btn alt" id="no">NO 🙈</button>
+  </div>
+  <div class="tiny" id="hint">Choose with your heart… 💗</div>
+ </div>
+</section>
+
+<section class="scene" id="s6">
+ <span class="step">THE HAPPIEST LITTLE YES · 06</span>
+ <div class="wrap">
+  <div class="final-heart">💖</div>
+  <div class="kicker">The universe is smiling now</div>
+  <h1 class="script">You said yes!</h1>
+  <p class="lead">Ponnmaniiiii, if I could put this happiness into a little box, I'd send it straight to you with a thousand tiny hearts.</p>
+  <button class="btn" data-go="7">READ YOUR LAST LITTLE LETTER →</button>
+ </div>
+</section>
+
+<section class="scene" id="s7">
+ <span class="step">FROM MY HEART TO YOURS · 07</span>
+ <div class="wrap">
+  <article class="paper">
+   <div class="script">My favourite person,</div>
+   <p>I want you to know that you matter to me in ways I can't fit neatly into a message. Your smile, your presence, the little things that make you you — all of it has a place in my heart.</p>
+   <p>I can't promise that every day will be like a movie. But I can promise to keep choosing kindness, honesty, laughter, and the little moments that make a connection beautiful.</p>
+   <p>When life gets loud, I hope you remember this quiet little corner of the internet and the person who made it just to remind you that you are special.</p>
+   <p>Today, tomorrow, and whenever you need a reminder: I'm glad you're in my world,ummmmmaaaaaahhhhhhhh.</p>
+   <div class="sign">I love you, ponnaaahhh ♥<br></div>
+  </article>
+  <div style="margin-top:28px"><button class="btn" data-go="8">ONE LAST LITTLE MAGIC ✨</button></div>
+ </div>
+</section>
+
+<section class="scene" id="s8">
+ <span class="step">A LITTLE FOREVER · 08</span>
+ <div class="wrap">
+  <div class="kicker">Made with love · kept in the heart</div>
+  <div class="final-heart">💞</div>
+  <h1 class="final-title">For Aalbyyyyyy</h1>
+  <div class="script">my today, my sweet darlingggg.</div>
+  <div class="rule">♥</div>
+  <p class="lead">If you ever forget how special you are, come back here.Our little world will always have a place for you,ummmmmmmmmaaaaaaaaaahhhhhhhh ummmmmaaaaaahhhhhhhh chakkaraa ummmmmaaaaaahhhhhhhh.</p>
+  <button class="btn alt" id="again">START OUR STORY AGAIN ↺</button>
+  <div class="footer">A SMALL WEBSITE · A VERY BIG FEELING</div>
+ </div>
+</section>
+</main>
+
+<script>
+(() => {
+ const scenes=[...document.querySelectorAll('.scene')];
+ const envelope=document.getElementById('envelope');
+ const music=document.getElementById('song');
+ const musicButton=document.getElementById('musicButton');
+ const no=document.getElementById('no');
+ const yes=document.getElementById('yes');
+ const arena=document.getElementById('arena');
+ let musicPlaying=false;
+
+ function go(n){
+   scenes.forEach((s,i)=>{s.classList.toggle('active',i===n-1);s.setAttribute('aria-hidden',i===n-1?'false':'true')});
+   window.scrollTo({top:0,behavior:'smooth'});
+   if(n===6||n===8) petals(45);
+ }
+ document.getElementById('start').addEventListener('click',()=>{petals(16);go(2)});
+ document.getElementById('open').addEventListener('click',()=>{envelope.classList.add('open');petals(15);setTimeout(()=>go(3),850)});
+ document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.go))));
+
+ function dodge(){
+   const a=arena.getBoundingClientRect(), y=yes.getBoundingClientRect(), b=no.getBoundingClientRect();
+   const maxX=Math.max(0,a.width-b.width),maxY=Math.max(0,a.height-b.height);
+   let x=0,t=0;
+   for(let i=0;i<30;i++){
+     x=Math.random()*maxX;t=Math.random()*maxY;
+     const r={left:a.left+x,right:a.left+x+b.width,top:a.top+t,bottom:a.top+t+b.height};
+     if(!(r.left<y.right+8&&r.right>y.left-8&&r.top<y.bottom+8&&r.bottom>y.top-8))break;
+   }
+   no.style.left=x+'px';no.style.top=t+'px';no.style.transform=`rotate(${Math.random()*14-7}deg)`;
+   document.getElementById('hint').textContent=['Hehe… too quick for you 🙈','That little button has plans of its own 💗','Try again, sweetheart 😌'][Math.floor(Math.random()*3)];
+ }
+ no.addEventListener('pointerenter',dodge);
+ no.addEventListener('pointerdown',e=>{e.preventDefault();dodge()});
+ no.addEventListener('click',e=>{e.preventDefault();dodge()});
+ no.addEventListener('touchstart',e=>{e.preventDefault();dodge()},{passive:false});
+ yes.addEventListener('click',()=>{go(6);petals(55)});
+
+ function petals(count){
+   const layer=document.getElementById('petals'), symbols=['♥','♡','✦','❀','💗'];
+   for(let i=0;i<count;i++){
+     const el=document.createElement('span');el.className='petal';
+     el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+     el.style.left=Math.random()*100+'vw';
+     el.style.setProperty('--drift',(Math.random()*180-90)+'px');
+     el.style.fontSize=(12+Math.random()*20)+'px';
+     el.style.animationDuration=(5+Math.random()*6)+'s';
+     el.style.animationDelay=(Math.random()*1.8)+'s';
+     el.style.color=['#ff638b','#ffb7ca','#e7c38b','#fff0df'][Math.floor(Math.random()*4)];
+     layer.appendChild(el);el.addEventListener('animationend',()=>el.remove());
+   }
+ }
+ function stars(){
+   const layer=document.getElementById('sky');
+   for(let i=0;i<95;i++){
+     const s=document.createElement('i');s.className='star';
+     s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';
+     s.style.animationDelay=Math.random()*4+'s';s.style.animationDuration=(1.5+Math.random()*4)+'s';
+     layer.appendChild(s);
+   }
+ }
+ musicButton.addEventListener('click',async()=>{
+   if(music.paused){
+     try{await music.play();musicPlaying=true;musicButton.textContent='♫  MUSIC ON · TAP TO PAUSE'}
+     catch(e){alert('Please add your MP3 named love-song.mp3 beside index.html, then tap the music button again.');}
+   }else{music.pause();musicPlaying=false;musicButton.textContent='♫  TAP TO START MUSIC'}
+ });
+ document.getElementById('again').addEventListener('click',()=>{
+   envelope.classList.remove('open');no.style.left='';no.style.top='';no.style.transform='';
+   document.getElementById('hint').textContent='Choose with your heart… 💗';go(1);
+ });
+ stars();petals(14);
+})();
+</script>
+</body>
+</html>
